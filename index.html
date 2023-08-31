@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Prompt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        #options {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <button id="showPrompt">Open Prompt</button>
+    <div id="options">
+        <p>I know the action</p>
+        <button id="proceed">Proceed</button>
+        <button id="otherDay">Will do it some other day</button>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('showPrompt').addEventListener('click', function() {
+            document.getElementById('options').style.display = 'block';
+        });
+
+        document.getElementById('proceed').addEventListener('click', function() {
+            document.getElementById('options').style.display = 'none';
+            document.getElementById('result').innerHTML = `
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfY8J49KTT4ASEtgAQa5tTCiQg_WAVYPLMVc5auPy6voEZvmA/viewform?embedded=true" width="640" height="425" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            `;
+        });
+
+        document.getElementById('otherDay').addEventListener('click', function() {
+            document.getElementById('options').style.display = 'none';
+            document.getElementById('result').textContent = 'Thank you!';
+        });
+    </script>
+</body>
+</html>
