@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera and Person Detection</title>
+</head>
+<body>
+    <h1>Person Detection</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <p id="result">Detecting...</p>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            const result = document.getElementById('result');
+            
+            // Get user media for the camera
+            navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                video.srcObject = stream;
+            })
+            .catch((error) => {
+                console.error('Error accessing the camera:', error);
+            });
+
+            // Load the COCO-SSD model for person detection
+            cocoSsd.load()
+            .then((model) => {
+                detect(model);
+            })
+            .catch((error) => {
+                console.error('Error loading the model:', error);
+            });
+
+            function detect(model) {
+                model.detect(video)
+                .then((predictions) => {
+                    // Draw bounding boxes on the canvas
+                    const context = canvas.getContext('2d');
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+
+                    predictions.forEach((prediction) => {
+                        context.beginPath();
+                        context.rect(
+                            prediction.bbox[0],
+                            prediction.bbox[1],
+                            prediction.bbox[2],
+                            prediction.bbox[3]
+                        );
+                        context.lineWidth = 2;
+                        context.strokeStyle = 'red';
+                        context.fillStyle = 'red';
+                        context.stroke();
+                        context.fillText(
+                            prediction.class + ` (${Math.round(prediction.score * 100)}%)`,
+                            prediction.bbox[0],
+                            prediction.bbox[1] > 10 ? prediction.bbox[1] - 5 : 10
+                        );
+                    });
+
+                    result.textContent = `People detected: ${predictions.length}`;
+
+                    // Call detect recursively for real-time detection
+                    requestAnimationFrame(() => {
+                        detect(model);
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
