@@ -1,12 +1,15 @@
 window.addEventListener("load", () => {
 
-
-    
     let video;
     let detector;
     let detectionInterval;
     let detectionTime = 15 * 1000; // 15 seconds in milliseconds
+    let dt = 15;
     let humanCount = 0;
+
+    // document.getElementById('webcam').style.display = 'none';
+    document.getElementById('timer').style.display = 'none';
+    document.getElementById('fnn').style.display = 'none';
     
     async function setupCamera() {
         video = document.getElementById('webcam');
@@ -28,21 +31,36 @@ window.addEventListener("load", () => {
         const predictions = await detector.detect(video);
         humanCount = predictions.filter(prediction => prediction.class === 'person').length;
         document.getElementById('fnn').innerText = `Number of humans detected: ${humanCount}`;
+        return humanCount;
     }
     
-    function startDetection() {
+     function startDetection() {
+        return new Promise(async (resolve) => {
         loadDetector().then(() => {
-            setupCamera().then((video) => {
+            setupCamera().then(async (video) => {
                 video.play();
-                detectionInterval = setInterval(detectHuman, 1000); // Run detection every second
+                detectionInterval = setInterval(async () => {
+                    const humanCount = await detectHuman();
+                }, 1000); // Run detection every second
+                dtc = setInterval( function() {
+                    // resolve(humanCount);
+                    document.getElementById('timer').innerText = `Time remaining: ${dt} seconds`;
+                    dt--;
+                }, 1000);
     
                 setTimeout(() => {
                     clearInterval(detectionInterval);
+                    clearInterval(dtc);
+                    resolve(humanCount);
                     video.srcObject.getTracks().forEach(track => track.stop()); // Stop video stream
+                    humanCount = document.getElementById('fnn').innerText.split(' ')[4];
                     document.getElementById('webcam').style.display = 'none';
+                    document.getElementById('timer').style.display = 'none';
+                    document.getElementById('fnn').style.display = 'none';
                 }, detectionTime);
             });
         });
+    });
     }
 
 const one = document.querySelector(".one");
@@ -91,9 +109,13 @@ three.onclick = function () {
             showCancelButton: true,
         confirmButtonText: 'Yes',
         cancelButtonText: 'No'
-        }).then((result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
-                startDetection();
+                document.getElementById('timer').style.display = 'block';
+                document.getElementById('fnn').style.display = 'block';
+                x = await startDetection();
+                alert(x);
+
               
             } else if (result.isDismissed === Swal.DismissReason.cancel) {
               Swal.fire('You clicked No.', '', 'info');
@@ -117,6 +139,7 @@ three.onclick = function () {
     });
 }
 
+    
 }
 four.onclick = function () {
     if (three_selected) {
