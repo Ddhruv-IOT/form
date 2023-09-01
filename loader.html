@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFrame Loader</title>
+    <style>
+        /* Styling for the loader */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(90, 29, 29, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        /* Hide the iframe initially */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader element -->
+    <div id="loader" class="loader"></div>
+
+    <!-- Iframe element with a hidden class -->
+    <iframe id="myIframe" class="hidden" src="https://docs.google.com/forms/d/e/1FAIpQLSfY8J49KTT4ASEtgAQa5tTCiQg_WAVYPLMVc5auPy6voEZvmA/viewform?embedded=true"></iframe>
+
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get references to the iframe and loader elements
+            const iframe = document.getElementById("myIframe");
+            const loader = document.getElementById("loader");
+
+            // Add an event listener to the iframe to detect when it's fully loaded
+            iframe.addEventListener("load", function () {
+                // Hide the loader when the iframe is loaded
+                loader.style.display = "none";
+                // Show the iframe
+                iframe.style.display = "block";
+            });
+        });
+    </script> -->
+</body>
+</html>
