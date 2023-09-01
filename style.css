@@ -1,0 +1,318 @@
+/* *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+body {
+  /* width: 90vw; */
+    transition: 3s;
+    background-color: rgb(22, 28, 29);
+    background-color: rgba(255, 255, 255, 0.543);
+    color: white;
+    font-family: Arial, sans-serif;
+    /* text-align: center; */
+    /* margin-top: 100px; */
+    display: flex;
+    /* justify-content: center; */
+    /* justify-items: center; */
+    flex-direction: column;
+    align-items: center;
+    animation: changeBackground 2s ease forwards; 
+}
+
+@keyframes changeBackground {
+    from {
+        background-color: white; /* Initial background color */
+    }
+    to {
+        background-color: rgb(22, 28, 29); /* New background color */
+    }
+}
+
+.welcome {
+    transition: 2s;
+    margin: 20px 0px 175px 0px;
+    /* width: 80%; */
+    background-color: rgb(220, 237, 240);
+    position: relative;
+    justify-self: center!important;
+    justify-content: center;
+   
+
+
+}
+
+
+/* .center {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+  }
+  .wave {
+    width: 5px;
+    height: 100px;
+    background: linear-gradient(45deg, cyan, #fff);
+    margin: 10px;
+    animation: wave 1s linear infinite;
+    border-radius: 20px;
+  }
+  .wave:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .wave:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .wave:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  .wave:nth-child(5) {
+    animation-delay: 0.4s;
+  }
+  .wave:nth-child(6) {
+    animation-delay: 0.5s;
+  }
+  .wave:nth-child(7) {
+    animation-delay: 0.6s;
+  }
+  .wave:nth-child(8) {
+    animation-delay: 0.7s;
+  }
+  .wave:nth-child(9) {
+    animation-delay: 0.8s;
+  }
+  .wave:nth-child(10) {
+    animation-delay: 0.9s;
+  }
+  
+  @keyframes wave {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  } */
+
+  .content {
+    position: relative;
+  /* transition: 3s; */
+    animation: appearAnimation 1s ease forwards;
+  }
+
+  .content h2 {
+    /* display: none; */
+    position: absolute;
+    transform: translate(-50%, -50%);
+    /* transform: translateY(-200%); */
+    font-size: 8rem;
+    animation: appearAnimation 5s ease forwards;
+  }
+
+ 
+
+  .content h2:nth-child(1) {
+   color: transparent;
+   -webkit-text-stroke: 2px rgb(103, 65, 200);
+  
+  }
+
+  .content h2:nth-child(2) {
+    color: rgba(255, 255, 0, 0.811);
+    animation: animate 4s ease-in-out infinite;
+   }
+
+   @keyframes animate {
+    0%, 100%{
+        clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+        color: white;
+
+    }
+    50%{
+        clip-path: polygon(0 60%, 16% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+    color: rgba(255, 255, 0, 0.811);
+
+    }
+    
+   }
+
+   @keyframes appearAnimation {
+    0% {
+        transform: translateY(-200%);/* Start the element outside the viewport */
+        
+    }
+    100% {
+        transform: translateY(0%);
+        transform: translate(-50%, -50%); /*Move the element to the center of the page */
+        
+    }
+}
+
+.typing {
+  /* background-color: red; */
+  font-size: 2.2rem;
+  margin-bottom: 100px;
+  margin: 10px 0px 40px 0px;
+  /* min-width: 100%; */
+  /* display: block; */
+}
+.typewriter {
+  transition: 2s;
+  /* width: 80%; */
+  /* position: relative; */
+  /* justify-self: center!important; */
+  justify-content: center;
+  /* font-size: 2.5rem; */
+
+
+}
+   #options {
+    display: none;
+}
+
+iframe {
+     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background-color: black;
+}
+
+
+
+@font-face {
+  font-family: pop;
+  src: url(./Fonts/Poppins-Medium.ttf);
+}
+
+.main{
+  /* width: 100%;
+  height: 100vh;
+  display: flex; */
+  justify-content: center;
+  align-items: center;
+  font-family: pop;
+  flex-direction: column;
+}
+.head{
+  text-align: center;
+}
+.head_1{
+  font-size: 30px;
+  font-weight: 600;
+  color: #333;
+}
+.head_1 span{
+  color: #ff4732;
+}
+.head_2{
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 3px;
+}
+ul{
+  display: flex;
+  margin-top: 80px;
+}
+ul li{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+ul li .icon{
+  font-size: 35px;
+  color: #ff4732;
+  margin: 0 60px;
+}
+ul li .text{
+  font-size: 14px;
+  font-weight: 600;
+  color: #ff4732;
+}
+
+/* Progress Div Css  */
+
+ul li .progress{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(68, 68, 68, 0.781);
+  margin: 14px 0;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  position: relative;
+  cursor: pointer;
+}
+.progress::after{
+  content: " ";
+  position: absolute;
+  width: 125px;
+  height: 5px;
+  background-color: rgba(68, 68, 68, 0.781);
+  right: 30px;
+}
+.one::after{
+  width: 0;
+  height: 0;
+}
+ul li .progress .uil{
+  display: none;
+}
+ul li .progress p{
+  font-size: 13px;
+}
+
+/* Active Css  */
+
+ul li .active{
+  background-color: #ff4732;
+  display: grid;
+  place-items: center;
+}
+li .active::after{
+  background-color: #ff4732;
+}
+ul li .active p{
+  display: none;
+}
+ul li .active .uil{
+  font-size: 20px;
+  display: flex;
+}
+
+ul{
+  flex-direction: column;
+}
+ul li{
+  flex-direction: row;
+}
+ul li .progress{
+  margin: 0 30px;
+}
+.progress::after{
+  width: 5px;
+  height: 55px;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+.one::after{
+  height: 0;
+}
+ul li .icon{
+  margin: 15px 0;
+}
+
+
+/* </style> */
