@@ -1,5 +1,50 @@
 window.addEventListener("load", () => {
 
+
+    
+    let video;
+    let detector;
+    let detectionInterval;
+    let detectionTime = 15 * 1000; // 15 seconds in milliseconds
+    let humanCount = 0;
+    
+    async function setupCamera() {
+        video = document.getElementById('webcam');
+        const stream = await navigator.mediaDevices.getUserMedia({ 'audio': false, 'video': true });
+        video.srcObject = stream;
+    
+        return new Promise((resolve) => {
+            video.onloadedmetadata = () => {
+                resolve(video);
+            };
+        });
+    }
+    
+    async function loadDetector() {
+        detector = await cocoSsd.load();
+    }
+    
+    async function detectHuman() {
+        const predictions = await detector.detect(video);
+        humanCount = predictions.filter(prediction => prediction.class === 'person').length;
+        document.getElementById('fnn').innerText = `Number of humans detected: ${humanCount}`;
+    }
+    
+    function startDetection() {
+        loadDetector().then(() => {
+            setupCamera().then((video) => {
+                video.play();
+                detectionInterval = setInterval(detectHuman, 1000); // Run detection every second
+    
+                setTimeout(() => {
+                    clearInterval(detectionInterval);
+                    video.srcObject.getTracks().forEach(track => track.stop()); // Stop video stream
+                    document.getElementById('webcam').style.display = 'none';
+                }, detectionTime);
+            });
+        });
+    }
+
 const one = document.querySelector(".one");
 const two = document.querySelector(".two");
 const three = document.querySelector(".three");
@@ -38,71 +83,26 @@ two.onclick = function () {
 }
 three.onclick = function () {
     if (two_selected) {
-        Swal.fire({
+
+        x = Swal.fire({
             title: "info",
             text: "Kindly allow the camera permissions to access your camera!, We won't store any data!",
             icon: "info",
-            confirmButtonText: "Okay",
-        });
+            showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                startDetection();
+              
+            } else if (result.isDismissed === Swal.DismissReason.cancel) {
+              Swal.fire('You clicked No.', '', 'info');
+            }})
+    
+
         three_selected = true;
 
-        // const video = document.getElementById('video');
-        // const canvas = document.getElementById('canvas');
-        // const result = document.getElementById('result');
-
-        // // Get user media for the camera
-        // navigator.mediaDevices.getUserMedia({ video: true })
-        //     .then((stream) => {
-        //         video.srcObject = stream;
-        //     })
-        //     .catch((error) => {
-        //         console.error('Error accessing the camera:', error);
-        //     });
-
-        // // Load the COCO-SSD model for person detection
-        // cocoSsd.load()
-        //     .then((model) => {
-        //         detect(model);
-        //     })
-        //     .catch((error) => {
-        //         console.error('Error loading the model:', error);
-        //     });
-
-        // function detect(model) {
-        //     model.detect(video)
-        //         .then((predictions) => {
-        //             // Draw bounding boxes on the canvas
-        //             const context = canvas.getContext('2d');
-        //             context.clearRect(0, 0, canvas.width, canvas.height);
-
-        //             predictions.forEach((prediction) => {
-        //                 context.beginPath();
-        //                 context.rect(
-        //                     prediction.bbox[0],
-        //                     prediction.bbox[1],
-        //                     prediction.bbox[2],
-        //                     prediction.bbox[3]
-        //                 );
-        //                 context.lineWidth = 2;
-        //                 context.strokeStyle = 'red';
-        //                 context.fillStyle = 'red';
-        //                 context.stroke();
-        //                 context.fillText(
-        //                     prediction.class + ` (${Math.round(prediction.score * 100)}%)`,
-        //                     prediction.bbox[0],
-        //                     prediction.bbox[1] > 10 ? prediction.bbox[1] - 5 : 10
-        //                 );
-        //             });
-
-        //             result.textContent = `People detected: ${predictions.length}`;
-
-        //             // Call detect recursively for real-time detection
-        //             requestAnimationFrame(() => {
-        //                 detect(model);
-        //             });
-        //         });
-        // }
-        // //};
+        
         one.classList.add("active");
         two.classList.add("active");
         three.classList.add("active");
