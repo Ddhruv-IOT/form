@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline with Lines</title>
+    <style>
+        /* Timeline container */
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: black;
+        }
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 100px auto;
+            border-left: 2px solid #ffffffb1;
+            padding: 0 20px 0 30px;
+        }
+
+        .continer {
+            padding: 10px 40px;
+            position: relative;
+            background-color: #ffffffb1;
+            width: 50%;
+            border-radius: 4px;
+        }
+
+        .continer::before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            left: -40px;
+            background-color: #000;
+            border: 3px solid #ddd;
+            border-radius: 50%;
+            top: 10px;
+            <!-- z-index: 1; -->
+        }
+
+        .textbox {
+            padding: 20px;
+            position: relative;
+            background-color: #ffffffb1;
+          
+            border-radius: 4px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="timeline">
+        <div class="continer">
+            <div class="textbox">
+                <h1>Timeline with Lines</h1>
+                <p>Here's a timeline with connecting lines.</p>
+            </div>
+        </div>
+
+        <div class="continer">
+            <div class="textbox">
+                <h1>Timeline with Lines</h1>
+                <p>Here's a timeline with connecting lines.</p>
+            </div>
+
+        </div>
+
+        <div class="continer">
+            <div class="textbox">
+                <h1>Timeline with Lines</h1>
+                <p>Here's a timeline with connecting lines.</p>
+            </div>
+
+        </div>
+
+        <div class="continer">
+            <div class="textbox">
+                <h1>Timeline with Lines</h1>
+                <p>Here's a timeline with connecting lines.</p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
