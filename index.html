@@ -80,14 +80,6 @@
                     </div>
                     <p class="text">Proceed to form</p>
                 </li>
-                <!-- <li>
-                    <i class="icon uil uil-map-marker"></i>
-                    <div class="progress five">
-                        <p>5</p>
-                        <i class="uil uil-check"></i>
-                    </div>
-                    <p class="text">Order Arrived</p>
-                </li> -->
             </ul>
     
         </div>   
@@ -114,32 +106,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 
-    <script>
-        document.getElementById("showAlert").addEventListener("click", function () {
-            Swal.fire({
-              title: "Hello!",
-              text: "This is a SweetAlert pop-up!",
-              icon: "info",
-              confirmButtonText: "OK",
-            });
-          });
-          
-        document.getElementById('showPrompt').addEventListener('click', function() {
-            document.getElementById('options').style.display = 'block';
-        });
-
-        document.getElementById('proceed').addEventListener('click', function() {
-            document.getElementById('options').style.display = 'none';
-            document.getElementById('result').innerHTML = `
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfY8J49KTT4ASEtgAQa5tTCiQg_WAVYPLMVc5auPy6voEZvmA/viewform?embedded=true" width="640" height="425" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-            `;
-        });
-
-        document.getElementById('otherDay').addEventListener('click', function() {
-            document.getElementById('options').style.display = 'none';
-            document.getElementById('result').textContent = 'Thank you!';
-        });
-    </script>
 
     <script>
         var typed = new Typed('.typewriter', {
