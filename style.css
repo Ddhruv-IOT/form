@@ -19,7 +19,8 @@ body {
     flex-direction: column;
     align-items: center;
     animation: changeBackground 2s ease forwards; 
-    overflow: hidden;
+    /* overflow: hidden; */
+    overflow-x: hidden;
 }
 
 @keyframes changeBackground {
