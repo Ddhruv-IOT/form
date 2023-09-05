@@ -74,6 +74,8 @@ let two_selected = false
 let three_selected = false
 let four_selected = false
 
+let cam_test_pass = false
+
 one.onclick = function () {
     one_selected = true
     one.classList.add("active");
@@ -111,24 +113,30 @@ three.onclick = function () {
         cancelButtonText: 'No'
         }).then(async (result) => {
             if (result.isConfirmed) {
+                three_selected = true;
+                one.classList.add("active");
+                two.classList.add("active");
+                three.classList.add("active");
+                four.classList.remove("active");
                 document.getElementById('timer').style.display = 'block';
                 document.getElementById('fnn').style.display = 'block';
                 x = await startDetection();
                 alert(x);
+                if (x > 1) {
+                    cam_test_pass = false;
+                    Swal.fire({
+                        title: "Error!",
+                        text: "More than one person detected! Try again!",
+                        icon: "error",
+                        confirmButtonText: "OK",
+                    });
+                }
 
               
             } else if (result.isDismissed === Swal.DismissReason.cancel) {
               Swal.fire('You clicked No.', '', 'info');
             }})
     
-
-        three_selected = true;
-
-        
-        one.classList.add("active");
-        two.classList.add("active");
-        three.classList.add("active");
-        four.classList.remove("active");
     }
     else{
     Swal.fire({
@@ -141,19 +149,19 @@ three.onclick = function () {
 
     
 }
-four.onclick = function () {
-    if (three_selected) {
-        four_selected = true
-        one.classList.add("active");
-        two.classList.add("active");
-        three.classList.add("active");
-        four.classList.add("active");
-    }
-    Swal.fire({
-        title: "Hello!",
-        text: "This is a SweetAlert pop-up!",
-        icon: "info",
-        confirmButtonText: "OK",
-    });
-}
+// four.onclick = function () {
+//     if (three_selected) {
+//         four_selected = true
+//         one.classList.add("active");
+//         two.classList.add("active");
+//         three.classList.add("active");
+//         four.classList.add("active");
+//     }
+//     Swal.fire({
+//         title: "Hello!",
+//         text: "This is a SweetAlert pop-up!",
+//         icon: "info",
+//         confirmButtonText: "OK",
+//     });
+// }
 });
