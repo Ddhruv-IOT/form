@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">   
-    <title>RAIoT Feedback System</title>    
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>RAIoT Feedback System</title>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
 </head>
 
-<body>
+<body id="body">
     <!-- <div class="center">
         <div class="wave"></div>
         <div class="wave"></div>
@@ -22,110 +23,86 @@
         <div class="wave"></div>
         <div class="wave"></div>
       </div> -->
-      <!-- <section> -->
-        <div class="welcome">
-            <div class="content">
+    
+    <div class="welcome">
+        <div class="content">
             <h2>Welcome</h2>
             <h2>Welcome</h2>
-            </div>
         </div>
-      <!-- </section> -->
-      
-   
+    </div>
+
     <div class="typing">
-        
-    🎙️<b><i><span class="typewriter"></span></i></b>
-        </div>
 
+        🎙️<b><i><span class="typewriter"></span></i></b>
+    </div>
 
-
-
-        <div class="main">
-
-            <!-- <div class="head">
-                <p class="head_1">Animated Step <span>Progress Bar</span></p>
-                <p class="head_2">Using Html, Css & JavaScript</p>
-            </div> -->
-    
-            <ul>
-                <li>
-                    <i class="icon uil uil-capture"></i>
-                    <div class="progress one">
-                        <p>1</p>
-                        <i class="uil uil-check"></i>
-                    </div>
-                    <p class="text">Are you in a safe place ?</p>
-                </li>
-                <li>
-                    <i class="icon uil uil-clipboard-notes"></i>
-                    <div class="progress two">
-                        <p>2</p>
-                        <i class="uil uil-check"></i>
-                    </div>
-                    <p class="text">Is the website opened in Private browsing mode ?</p>
-                </li>
-                <li>
-                    <i class="icon uil uil-credit-card"></i>
-                    <div class="progress three">
-                        <p>3</p>
-                        <i class="uil uil-check"></i>
-                    </div>
-                    <p class="text">Camera Judemnet</p>
-                </li>
-                <li>
-                    <i class="icon uil uil-exchange"></i>
-                    <div class="progress four">
-                        <p>4</p>
-                        <i class="uil uil-check"></i>
-                    </div>
-                    <p class="text">Proceed to form</p>
-                </li>
-            </ul>
-    
-        </div>   
-        
-        <video id="webcam" autoplay playsinline height="100px" width="100px"></video>
-        <!-- <button onclick="startDetection()">Start Detection</button> -->
-        <p class="fnn" id="fnn"></p>
-        <p class="fnn" id="timer"></p>
-
-        <div>
-
-    <button id="showPrompt">Open Prompt</button>
-    <div id="options">
-        <p>I know the action</p>
-        <button id="proceed">Proceed</button>
-        <button id="otherDay">Will do it some other day</button>
-        <button id="showAlert">Show SweetAlert</button>
+    <div class="main">
+        <ul>
+            <li>
+                <i class="icon uil uil-capture"></i>
+                <div class="progress one">
+                    <p>1</p>
+                    <i class="uil uil-check"></i>
+                </div>
+                <p class="text">Are you in a safe place ?</p>
+            </li>
+            <li>
+                <i class="icon uil uil-clipboard-notes"></i>
+                <div class="progress two">
+                    <p>2</p>
+                    <i class="uil uil-check"></i>
+                </div>
+                <p class="text">Is the website opened in Private browsing mode ?</p>
+            </li>
+            <li>
+                <i class="icon uil uil-credit-card"></i>
+                <div class="progress three">
+                    <p>3</p>
+                    <i class="uil uil-check"></i>
+                </div>
+                <p class="text">Camera Judgement</p>
+            </li>
+            <li>
+                <i class="icon uil uil-exchange"></i>
+                <div class="progress four">
+                    <p>4</p>
+                    <i class="uil uil-check"></i>
+                </div>
+                <p class="text">Proceed to form</p>
+            </li>
+        </ul>
 
     </div>
+    <p class="fnn" id="fnn"></p>
+    <p class="fnn" id="timer"></p>
+
+    <video id="webcam" autoplay playsinline height="100px" width="100px"></video>
+   
     <div id="result"></div>
-</div>
+    </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 
 
     <script>
         var typed = new Typed('.typewriter', {
-          strings: ['Have something to share?', 'Having a feedback for us?', "You are just a click away!"],
-          typeSpeed: 55,
-          backSpeed: 50,
-          loop: true,
-          cursorChar: '|',
+            strings: ['Have something to share?', 'Having a feedback for us?', "You are just a click away!"],
+            typeSpeed: 55,
+            backSpeed: 50,
+            loop: true,
+            cursorChar: '|',
         });
-      </script>
+    </script>
 
-      <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
-    
+
     <script src="./script.js">
 
-        
-        </script>
 
-
-    <!-- s -->
+    </script>
 </body>
+
 </html>
