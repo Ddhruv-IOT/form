@@ -1,10 +1,13 @@
 window.addEventListener("load", () => {
 
+    // const fullscreenButton = document.getElementById('fullscreen-button');
+    const elementToMakeFullscreen = document.getElementById('body');
+
     let video;
     let detector;
     let detectionInterval;
     let detectionTime = 15 * 1000; // 15 seconds in milliseconds
-    let dt = 15;
+    let dt = 12;
     let humanCount = 0;
 
     // document.getElementById('webcam').style.display = 'none';
@@ -45,7 +48,9 @@ window.addEventListener("load", () => {
                     dtc = setInterval(function () {
                         // resolve(humanCount);
                         document.getElementById('timer').innerText = `Time remaining: ${dt} seconds`;
-                        dt--;
+                        if (dt > 0) {
+                            dt--;
+                        }
                     }, 1000);
 
                     setTimeout(() => {
@@ -77,6 +82,25 @@ window.addEventListener("load", () => {
     let cam_test_pass = false
 
     one.onclick = function () {
+        Swal.fire({
+            title: "Permission Required!",
+            text: "Kindly allow full scrren mode!",
+            icon: "info",
+            confirmButtonText: "Okay",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // document.documentElement.requestFullscreen();
+                if (elementToMakeFullscreen.requestFullscreen) {
+                    elementToMakeFullscreen.requestFullscreen();
+                } else if (elementToMakeFullscreen.mozRequestFullScreen) { // Firefox
+                    elementToMakeFullscreen.mozRequestFullScreen();
+                } else if (elementToMakeFullscreen.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+                    elementToMakeFullscreen.webkitRequestFullscreen();
+                } else if (elementToMakeFullscreen.msRequestFullscreen) { // IE/Edge
+                    elementToMakeFullscreen.msRequestFullscreen();
+                }
+            }
+        })
         one_selected = true
         one.classList.add("active");
         two.classList.remove("active");
@@ -86,6 +110,7 @@ window.addEventListener("load", () => {
 
     two.onclick = function () {
         if (one_selected) {
+            
             two_selected = true
             one.classList.add("active");
             two.classList.add("active");
@@ -138,8 +163,6 @@ window.addEventListener("load", () => {
                         three.classList.add("active");
                         four.classList.add("active");
 
-
-                        document.getElementById('options').style.display = 'none';
                         document.getElementById('result').innerHTML = `
                                 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfY8J49KTT4ASEtgAQa5tTCiQg_WAVYPLMVc5auPy6voEZvmA/viewform?embedded=true" width="640" height="425" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                             `;
